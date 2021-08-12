@@ -1,0 +1,43 @@
+
+
+
+1：redis中string类型
+	最简单的类型
+	最大上限是1G
+	可以包含任何数据类型
+	一个key对应一个Value
+	二进制是安全的
+
+2：string相应的操作
+	set: set key value
+	get: get key
+
+	getrange: key start end 返回key中字符串值的子字符
+		SET mykey "This is my test key"
+		GETRANGE mykey 0 3 //"This"
+		GETRANGE mykey 0 -1 //This is my test key"
+
+	getset: getset key value 将给定的key的值设为value,并返回旧值
+		GETSET db mongodb    # 没有旧值，返回 nil
+		GETSET db redis      # 返回旧值 mongodb
+	
+	mget: mget key1[key2...] 获取所有（一个或多个）给定key的值
+
+	setex: setex key timeout value  为指定的key设置值及其过期时间
+		setex mykey 60 redis
+		TTL mykey
+
+	setnx: setnx key value  给指定的key不存在时，为key设置指定的值（SET if Not eXists）
+
+	strlen: strlen key 获取指定key所存储value的长度
+
+	incy: incy key 加一
+	incyby: incyby key amount 加指定的增量
+
+	decy
+	decyby
+
+	append 追加
+	.
+	.
+	.
