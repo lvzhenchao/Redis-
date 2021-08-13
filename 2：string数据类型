@@ -25,7 +25,7 @@
 
 	setex: setex key timeout value  为指定的key设置值及其过期时间
 		setex mykey 60 redis
-		TTL mykey
+		TTL mykey 查看过期时间
 
 	setnx: setnx key value  给指定的key不存在时，为key设置指定的值（SET if Not eXists）
 
