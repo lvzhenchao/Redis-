@@ -1,0 +1,28 @@
+
+
+1: hash数据类型
+	string类型的filed=>value的映射表
+	适合存储对象，占用更少的内存
+
+2: 常用操作
+	hset: hset key field value 为哈希表中的字段赋值
+
+	hget: hget key field 获取哈希表中指定的字段的值
+
+	hmset: hmset key field1 value1 [field2 value2]... 同时将多个field-value对设置到哈希表中
+
+	hmget: hmget key field1 field2 ... 同时获取哈希表内多个字段的值
+
+	hincrby: hincrby key field increment 为哈希表中特定的字段的整数加上增量
+
+	hexists: hexists key field 查看哈希表中，指定的字段是否存在
+
+	hlen: hlen key 或取哈希表中字段的数量
+
+	hkeys: hkeys key 获取哈希表中所有的字段
+
+	hvals: hvals key 获取哈希表中所有的值 
+
+	hgetall: hgetall key 获取哈希表中所有的字段和值
+
+	hdel: hdel key field 删除哈希表中的字段
