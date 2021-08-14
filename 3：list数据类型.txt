@@ -1,0 +1,33 @@
+
+
+1：list类型
+	是一个链表结构
+	是简单的字符串列表
+	主要功能：获取一个范围的所有值，push和pop功能；key可以理解为链表的名字；
+		可以添加一个元素到列表的头部（左边）或者尾部（右边）
+
+2：常用命令
+	lpush: lpush key value 左侧添加元素
+
+	lpop: lpop key 删除左侧第一个元素
+
+	rpush: rpush key value 右侧添加元素
+
+	rpop: rpop key 删除右侧第一个元素
+
+	lrange: lrange key start end 返回指定区间内的元素，区间已偏移量start和end指定（元素下标） 
+
+	linsert: linsert key before|after pivot value 在元素pivot前或者后面插入一个元素
+
+	lset: lset key index value 通过索引来设置元素值
+
+	lrem: lrem key count value 移除表中与参数value相等的元素
+		count > 0 : 从表头开始向表尾搜索，移除与 VALUE 相等的元素，数量为 COUNT 。
+		count < 0 : 从表尾开始向表头搜索，移除与 VALUE 相等的元素，数量为 COUNT 的绝对值。
+		count = 0 : 移除表中所有与 VALUE 相等的值。
+
+	rpoplpush: rpoplpush source destination 移除列表A最后一个元素，并将该元素添加到另一个列表返回
+
+	lindex: lindex key int 通过索引获取列表中的元素
+
+	llen: llen key 获取列表长度数量
