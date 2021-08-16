@@ -1,0 +1,21 @@
+
+1: sorted set数据类型
+	也是string类型的集合
+	且不允许重复
+	每个元素都会关联一个double类型的分数，用来排序
+	成员是唯一的，但分数却可以重复
+	作为索引来使用
+	具有顺序属性
+
+2: 常用命令
+
+	zadd: zadd key score1 member1 [score2 member2] 向有序集合中添加一个或多个成员，或者更新已存在的成员的分数（对于相同的members）
+
+	zrange: zrange key start stop [withscores] 通过索引区间返回有序集合指定区间内的成员
+		zange key 0 -1 (0~9 < A~Z < a~z )
+
+	zrem: zrem key member 移除
+
+	zincrby: zincrby key increment member 对指定成员的分数加上增量
+
+	zrank: zrank key member 返回有序集中指定成员的排名 从小到大排列
