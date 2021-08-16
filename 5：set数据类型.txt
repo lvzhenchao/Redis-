@@ -1,0 +1,23 @@
+
+
+1：set类型是string类型的无序集合，集合成员是唯一的，意味着集合不能出现重复的数据；类似数学中的集合
+	差集、并集、交集、添加元素、删除元素
+
+2：常用命令
+	sadd: sadd key member1[member2] 向集合中添加一个或多个成员
+
+	smembers: smembers key 返回集合中的所有成员
+
+	srem: srem key member1[member2] 移除集合中一个或多个成员
+
+	spop: spop key [count] 随机删除元素
+
+	sdiff: sdiff key1 [key2] 返回第一个集合与其他集合之间的差异（返回第一个key）
+
+	sinter: sinter key1 [key2] 返回交集
+
+	sunion: sunion key1 key2 返回并集，去重
+
+	
+
+
