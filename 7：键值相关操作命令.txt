@@ -1,0 +1,20 @@
+
+键值相关命令
+
+keys: keys pattern 返回满足给定要求的所有key
+
+exists: exista key 确认一个key是否存在
+
+del: del key 删除一个key
+
+expire: expire key seconds 设置一个key的过期时间（秒）
+
+move: move key db 将当前数据库中的key转移到其他数据库中
+
+persist: persist key 移除给定key的过期时间
+
+rename: rename key newkey 重命名key
+
+type: type key 返回值的类型
+
+ttl: ttl key 获取key的有效时长
