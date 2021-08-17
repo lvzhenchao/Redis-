@@ -1,0 +1,52 @@
+
+1: 为什么要用主从复制
+	结构： 单台故障、负荷过载
+	容量： 有限（单台建议不超过20G）(即使内存256G)
+	
+2: 主从复制的特点
+	master可以有多个slave
+	slave也可以互联，组成结构群
+	主从复制不会阻塞master,一个或多个slave与master同步数据的时候，master可以继续处理客户端发来的请求；相反slave在初次同步数据的时候，则会阻塞
+	提高系统的可伸缩性，读写分离，避免master要有独立的进程来完成相关操作
+
+3: 好处
+	读写分离，提高服务器的负载能力；根据读请求的规模，自由增加减少从库的数量
+	可以快速恢复，遇到故障
+
+4: 工作原理
+	slave启动链接master
+	slave发送sync命令
+	master启动存盘进程，并收集修改命令
+	master将数据库文件传给slave
+	slave收到后进行存盘
+
+5: 如何实现
+	复制两份redis.conf文件: 6379.conf&6380.conf
+		修改pidfile: /var/run/redis_6379.pid; /var/run/redis_6380.pid; 
+		修改端口： port: 6379; port: 6380
+		修改日志文件地址： logfile: 6379.log; 6380.log 
+		数据备份名称： dbfilename: dump6379.rdb; dump6380.rdb
+		分别保存退出 
+	分别启动这两个服务器
+		info查看相关配置信息，role: master
+		更改其中一个master(6380)为slave: slaveof 127.0.0.1 6379
+		info再查看6380： role: slave
+	查看
+		master内set几个值
+		slave内get这几个key
+	以上为临时主从关系：一旦master宕机或重启之后，关系立刻终止
+
+	永久：修改配置文件
+		master库不用修改，只修改slave库
+		配置文件： slaveof <masterip> <masterport>; 配置好主机master的端口号和IP
+		保存退出
+	从库默认只读的，写数据需要修改配置文件（一般不设置写）
+
+	从库重新手动修改为master
+		slaveof no one
+
+	哨兵模式自动从库修改为master
+		新建一个sentinel.conf文件，必须叫这个名字
+		内容： sentinel monitor mymaster <ip> <port>  //设置名称
+			  sentinel auth-pass mymaster myMaster123 //设置密码
+
