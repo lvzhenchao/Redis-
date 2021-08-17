@@ -1,0 +1,16 @@
+
+redis中sort排序函数及操作
+
+sort key 简单对集合自身值排序并返回排序结果
+
+desc: sort key desc 按照从大到小的顺序进行排序
+
+alpha: sort key alpha 按照字典排序对数字元素进行排序
+
+by: sort key by pattern 按照给定pattern组合成新的key,并按照新key中对应的内容进行排序
+
+get: get pattern 获取指定模式作为新key对应的值
+
+limit: limit start count 限定返回结果的数量
+
+store: store dstkey 将排序内容保存到指定key中
