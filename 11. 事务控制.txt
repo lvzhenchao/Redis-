@@ -1,0 +1,17 @@
+
+1: 事务控制
+	一次执行多个命令
+	具有顺序属性
+	multi开启事务命令 
+	exec触发事务命令
+
+2: 事务相关命令
+	discard: 取消事务，放弃执行事务块内的所有命令
+
+	exec: 执行所有事务块内的命令
+
+	multi: 标记事务块的开始
+
+	unwatch: 取消watch命令对所有key的监视
+
+	watch: watch key [key...] 监视一个或多个key
