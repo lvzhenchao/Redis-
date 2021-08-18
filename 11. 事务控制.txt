@@ -3,6 +3,7 @@
 	一次执行多个命令
 	具有顺序属性
 	multi开启事务命令 
+	每个执行命令都会进入队列
 	exec触发事务命令
 
 2: 事务相关命令
@@ -15,3 +16,19 @@
 	unwatch: 取消watch命令对所有key的监视
 
 	watch: watch key [key...] 监视一个或多个key
+		如果在事务执行之前这个(或这些) key 被其他命令（另一个客户端操作这个key）所改动，那么事务将被打断
+		乐观锁：一般是通过版本机制
+			例如： 
+				客户端1               客户端2
+				watch age
+				set age 30
+				multi
+				set age 50
+				exec //nil
+								     set age 28
+				get age  
+				//28; 
+				//set age 50没有被执行，已经被认为过期
+
+
+	
