@@ -1,0 +1,17 @@
+
+1：订阅与发布
+	是一种消息通讯模式
+	实现耦合
+	消息的传递是多对多
+	消息路由
+
+2： 常用命令
+	psubscribe: psubscribe pattern [pattern...] 订阅一个或多个给定模式的频道
+
+	publish: publish channel message 将信息发送到指定的频道
+
+	subscribe: subscribe channel [channel...] 订阅给定的一个或多个频道的信息
+
+	punsubscribe: punsubscribe [pattern [pattern...]] 退订所有给定模式的频道
+
+	unsubscribe: unsubscribe [channel [channel...]] 指退订给定的频道
