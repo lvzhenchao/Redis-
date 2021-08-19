@@ -1,0 +1,14 @@
+
+1: HyperLogLog的用途（版本必须高于2.8.9）
+	统计数字：IP数、每日访问IP数统计、在线统计数
+	节省内存：key只花费12kb就可以计算大数据量、估算法（0.81%误差）
+
+2： HyperLogLog常用命令
+	pfadd key element 添加指定元素到
+		pfadd ip:202108 1.1.1.1 2.2.2.2 3.3.3.3
+		只加新的内容，会去重
+
+	pfcount key 返回给定的技术估算值
+		计算总和数量
+
+	pfmerge deskkey sourcekey 将多个合并为一个
