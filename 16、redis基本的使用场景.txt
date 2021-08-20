@@ -10,6 +10,8 @@
 	缓存数据，提升服务器性能
 
 	排行榜（有序集合）
+		zadd key score1 member1 [score2 member2]
+		zrank: zrank key member 返回有序集中指定成员的排名 从小到大排列
 
 	计数器/限速器（用户点赞，访问数，抢购限制、登录限制）
 
