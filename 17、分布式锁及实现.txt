@@ -1,0 +1,55 @@
+
+1、分布式式锁业务场景
+
+	使用分布式锁来保证缓存的单线程写，避免缓存失效
+
+	并发写一个key,数据版本错误
+
+	订单防超卖
+
+目的：保证数据唯一性
+
+2、实现方案
+	基于数据库实现分布式锁
+		创建锁表
+		数据库排他锁
+
+	基于Zookeeper实现分布式锁
+
+	基于缓存（redis），实现分布式锁
+
+3、redis实现分布式锁
+	使用setnx()设置锁
+		$expire = 10 //有效期
+		$key = 'lock'//key
+
+		$value = time() + $expire
+		$lock = $redis->setnx($key, $value);
+		//判断是否上锁成功，成功则执行下步操作
+		if（！empty($lock)）{
+			被占用了，等等吧
+		}
+
+	存在死锁
+		$expire = 10;//有效期10秒
+		$key = 'lock';//key
+		$value = time() + $expire;//锁的值 = Unix时间戳 + 锁的有效期
+		$status = true;
+		while($status)
+		{
+		    $lock = $redis->setnx($key, $value);
+		    if(empty($lock))
+		    {
+		        $value = $redis->get($key);
+		        if($value < time())
+		        {
+		            $redis->del($key);//del这样也会出现问题，进程1崩溃，进程2和进程3会同时获得锁
+		        }       
+		    }else{
+		        $status = false;
+		        //下步操作....
+		    }
+		}
+
+4、布隆过滤器
+	是一个很长的二进制向量和一系列随机映射函数；用于检索一个元素是否在一个集合中
