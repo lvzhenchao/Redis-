@@ -14,8 +14,13 @@
 	zrange: zrange key start stop [withscores] 通过索引区间返回有序集合指定区间内的成员
 		zange key 0 -1 (0~9 < A~Z < a~z )
 
+	zrevrange: 返回集合中指定区间内的成员，通过索引，分数从高到低
+
 	zrem: zrem key member 移除
 
 	zincrby: zincrby key increment member 对指定成员的分数加上增量
 
 	zrank: zrank key member 返回有序集中指定成员的排名 从小到大排列
+
+	zrevrank:    返回有序集合中指定成员的排名，递减排序
+
